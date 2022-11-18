@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Текущее время</title>
+</head>
+<body>
+    <h1>Текущее время:</h1>
+    <h2>{{ datetime.datetime.now().time().strftime("%H:%M:%S") }}</h2>
+    <a href="{% url 'home' %}">Вернуться на главную страницу</a>
+</body>
+</html>

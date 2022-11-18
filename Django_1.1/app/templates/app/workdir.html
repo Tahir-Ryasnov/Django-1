@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Содержимое рабочей директории</title>
+</head>
+<body>
+    <h1>Директория содержит:</h1>
+    {% for dir in workdir %}
+    <h2>{{ dir }}</h2>
+    {% endfor %}
+    <a href="{% url 'home' %}"><button>Вернуться на главную страницу</button></a>
+</body>
+</html>
