@@ -22,7 +22,6 @@ class ArticleScopeInlineFormset(BaseInlineFormSet):
         self.count_main = 0
 
     def clean(self):
-
         for form in self.forms:
             if form.cleaned_data['is_main']:
                 self.count_main += 1
