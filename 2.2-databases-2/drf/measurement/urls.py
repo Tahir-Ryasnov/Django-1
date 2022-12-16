@@ -4,5 +4,5 @@ urlpatterns = [
     path('list/', ListView.as_view()),
     path('sensors/', SensorCreateAPIView.as_view()),
     path('measurements/', MeasurementCreateAPIView.as_view()),
-    path('update/', UpdateAPIView.as_view()),
+    path('update/<pk>/', UpdateAPIView.as_view()),
 ]
