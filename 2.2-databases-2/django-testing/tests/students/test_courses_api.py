@@ -51,8 +51,9 @@ def test_get_courses_list(course_factory, client):
 @pytest.mark.django_db
 def test_filter_course_id(course_factory, client):
     courses_count = randint(1, 10)
+    random_index = randint(1, courses_count) - 1
     courses_list = course_factory(_quantity=courses_count)
-    course_id = courses_list[courses_count-1].id
+    course_id = courses_list[random_index].id
     url = f'/api/v1/courses/?id={course_id}'
     resp = client.get(url)
     assert resp.status_code == 200
@@ -64,8 +65,9 @@ def test_filter_course_id(course_factory, client):
 @pytest.mark.django_db
 def test_filter_course_name(course_factory, client):
     courses_count = randint(1, 10)
+    random_index = randint(1, courses_count) - 1
     courses_list = course_factory(_quantity=courses_count)
-    course_name = courses_list[courses_count-1].name
+    course_name = courses_list[random_index].name
     url = f'/api/v1/courses/?name={course_name}'
     resp = client.get(url)
     assert resp.status_code == 200
@@ -85,8 +87,9 @@ def test_post_course(client):
 @pytest.mark.django_db
 def test_path_course(course_factory, client):
     courses_count = randint(1, 10)
+    random_index = randint(1, courses_count) - 1
     courses_list = course_factory(_quantity=courses_count)
-    course_id = courses_list[0].id
+    course_id = courses_list[random_index].id
     url = f'/api/v1/courses/{course_id}/'
     data = json.dumps({'name': 'test_patch_name'})
     resp = client.patch(url, data, content_type='application/json')
@@ -96,8 +99,9 @@ def test_path_course(course_factory, client):
 @pytest.mark.django_db
 def test_delete_course(course_factory, client):
     courses_count = randint(1, 10)
+    random_index = randint(1, courses_count) - 1
     courses_list = course_factory(_quantity=courses_count)
-    course_id = courses_list[courses_count - 1].id
+    course_id = courses_list[random_index].id
     url = f'/api/v1/courses/{course_id}/'
     courses_count = Course.objects.count()
     resp = client.delete(url)
