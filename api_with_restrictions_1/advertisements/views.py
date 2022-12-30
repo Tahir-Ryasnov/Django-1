@@ -1,4 +1,4 @@
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 from rest_framework.viewsets import ModelViewSet
 
@@ -15,14 +15,7 @@ class AdvertisementViewSet(ModelViewSet):
     queryset = Advertisement.objects.all()
     serializer_class = AdvertisementSerializer
     filter_backends = [filters.DjangoFilterBackend, ]
-    filter_class = [AdvertisementFilter, ]
-    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
+    filterset_class = AdvertisementFilter
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
     throttle_classes = [UserRateThrottle, AnonRateThrottle, ]
 
-    def get_permissions(self):
-        """Получение прав для действий."""
-
-        if self.action in ["create", "update", "partial_update"]:
-            return [IsAuthenticated()]
-
-        return []
